@@ -4,6 +4,6 @@
 |---|---|---|
 | Julio | juliogonzalezbonilla | Conductor |
 | Alejandro | AleHawai| Copiloto |
-| Javier | javiermontiel | Revisor |
+| Javier | Javi-Montiel | Revisor |
 
 Los papeles rotan en cada reto.
