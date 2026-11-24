@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resumen de coincidencias del dataset MatIA</title>
+  <style>
+    :root { color-scheme: light; font-family: "Segoe UI", Arial, sans-serif; color: #172033; background: #f3f5f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px 18px; }
+    main { max-width: 1120px; margin: auto; }
+    h1 { margin-bottom: 8px; font-size: clamp(1.7rem, 4vw, 2.4rem); }
+    h2 { margin: 0 0 16px; font-size: 1.2rem; }
+    p { color: #596579; line-height: 1.55; }
+    .subtitle { margin-top: 0; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 24px 0; }
+    .charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card, .panel { background: white; border: 1px solid #e3e7ed; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px #1720330a; }
+    .data-warning { border-left: 4px solid #d97706; }
+    .metric { display: block; font-size: 2rem; font-weight: 700; margin-bottom: 4px; }
+    .good { color: #15803d; } .bad { color: #b91c1c; }
+    figure { margin: 0; } svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .donut-total { font-size: 24px; font-weight: 700; fill: #172033; }
+    .donut-caption, .legend-label, .axis-label { font-size: 12px; fill: #596579; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { border-bottom: 1px solid #e8ebf0; padding: 11px 12px; vertical-align: top; }
+    th { color: #596579; font-size: .88rem; }
+    details ul { margin: 10px 0 4px; padding-left: 20px; }
+    details li { margin: 5px 0; overflow-wrap: anywhere; }
+    details li span { color: #596579; }
+    .section { margin: 28px 0; }
+    .empty-state { padding: 8px 0; }
+    @media (max-width: 760px) { .charts { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { body { padding: 20px 12px; } .card, .panel { padding: 16px; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Resumen de coincidencias del dataset</h1>
+  <p class="subtitle">Comparación del campo <strong>codigo_material</strong> del Excel
+  con los códigos incluidos en los nombres de imágenes de test, train y valid.</p>
+
+  <section class="cards" aria-label="Indicadores">
+    <div class="card"><span class="metric">208</span>Registros del Excel</div>
+    <div class="card"><span class="metric good">3 (1.44%)</span>Registros correctos</div>
+    <div class="card"><span class="metric bad">205 (98.56%)</span>Registros ausentes</div>
+    <div class="card"><span class="metric">100 / 375</span>
+      Imágenes coincidentes (26.67%)</div>
+  </section>
+
+  <section class="charts" aria-label="Gráficas">
+    <article class="panel"><h2>Proporción de registros</h2>
+      <figure>
+    <svg viewBox="0 0 240 180" role="img" aria-label="Registros con coincidencia: 3; sin coincidencia: 205">
+      <circle cx="65" cy="85" r="48" fill="none" stroke="#dc2626" stroke-width="20"/>
+      <circle cx="65" cy="85" r="48" fill="none" stroke="#15803d" stroke-width="20"
+        stroke-dasharray="4.35 301.59" transform="rotate(-90 65 85)"/>
+      <text x="65" y="82" text-anchor="middle" class="donut-total">208</text>
+      <text x="65" y="101" text-anchor="middle" class="donut-caption">registros</text>
+      <circle cx="132" cy="68" r="6" fill="#15803d"/>
+      <text x="144" y="72" class="legend-label">Correctos: 3</text>
+      <circle cx="132" cy="96" r="6" fill="#dc2626"/>
+      <text x="144" y="100" class="legend-label">Ausentes: 205</text>
+    </svg></figure>
+      <p>3 de 208 códigos aparecen en al menos un nombre de imagen.</p>
+    </article>
+    <article class="panel"><h2>Coincidencias por partición</h2>
+      <figure>
+    <svg viewBox="0 0 440 195" role="img" aria-label="Imágenes coincidentes y no coincidentes por partición">
+      <text x="0" y="45" class="axis-label">test</text><rect x="65" y="30" width="8.02" height="20" rx="4" fill="#15803d"/><rect x="73.02" y="30" width="35.50" height="20" rx="4" fill="#d1d5db"/><text x="116.51" y="45" class="axis-label">7 / 38</text><text x="0" y="83" class="axis-label">train</text><rect x="65" y="68" width="84.73" height="20" rx="4" fill="#15803d"/><rect x="149.73" y="68" width="215.27" height="20" rx="4" fill="#d1d5db"/><text x="373.00" y="83" class="axis-label">74 / 262</text><text x="0" y="121" class="axis-label">valid</text><rect x="65" y="106" width="21.76" height="20" rx="4" fill="#15803d"/><rect x="86.76" y="106" width="64.12" height="20" rx="4" fill="#d1d5db"/><text x="158.88" y="121" class="axis-label">19 / 75</text>
+      <rect x="65" y="150" width="12" height="12" rx="2" fill="#15803d"/>
+      <text x="83" y="161" class="legend-label">Coinciden con el subconjunto</text>
+      <rect x="65" y="171" width="12" height="12" rx="2" fill="#d1d5db"/>
+      <text x="83" y="182" class="legend-label">Resto de imágenes</text>
+    </svg></figure>
+      <p>Las barras muestran archivos con código coincidente frente al total de imágenes.</p>
+    </article>
+  </section>
+
+  
+  <section class="panel section data-warning">
+    <h2>Filas sin codigo_material: 182 y 184</h2>
+    <p>Estas filas no se pueden comparar con los nombres de las imágenes porque falta
+    el código que permitiría buscarlas. Por eso cuentan como registros sin coincidencia:
+    el informe no puede distinguir si falta la imagen o si falta completar el dato en el Excel.</p>
+    <div class='table-wrap'><table><thead><tr><th>Fila Excel</th><th>id_material</th><th>codigo_material</th></tr></thead><tbody><tr><td>182</td><td>matcg000181</td><td>(vacío)</td></tr><tr><td>184</td><td>matcg000183</td><td>(vacío)</td></tr></tbody></table></div>
+  </section>
+
+  <section class="panel section">
+    <h2>Resumen de imágenes por partición</h2>
+    <div class="table-wrap"><table><thead><tr><th>Partición</th><th>Total</th>
+      <th>Coincidentes</th><th>Sin coincidencia</th></tr></thead>
+      <tbody><tr><td>test</td><td>38</td><td>7</td><td>31</td></tr><tr><td>train</td><td>262</td><td>74</td><td>188</td></tr><tr><td>valid</td><td>75</td><td>19</td><td>56</td></tr></tbody></table></div>
+  </section>
+
+  <section class="panel section">
+    <h2>Registros correctos (3)</h2>
+    <p>Un registro se considera correcto cuando su codigo_material aparece como token
+    independiente en uno o más nombres de archivo. Abre cada fila para ver los archivos.</p>
+    <div class='table-wrap'><table><thead><tr><th>id_material</th><th>codigo_material</th><th>Archivos coincidentes</th></tr></thead><tbody><tr><td>matcg000110</td><td>BN022R</td><td><details><summary>69 imagen(es)</summary><ul><li><span>test</span> — 09231f94-BN022R_236_JPG.rf.kh3A16DAU1LJeb1bnOmI.JPG</li><li><span>test</span> — 2f9a3946-BN022R_15_JPG.rf.31d6NlRJIGn4tHnhQ7s0.JPG</li><li><span>test</span> — 56c7d33d-BN022R_37_JPG.rf.bGeSxUDvNAO5c91BfwTK.JPG</li><li><span>test</span> — cec03be9-BN022R_31_JPG.rf.qMvU9nHHAQi1PXi4RZUq.JPG</li><li><span>test</span> — f577012c-BN022R_42_JPG.rf.fTDsCuB45ENVYpSaLTKA.JPG</li><li><span>train</span> — 001e0835-BN022R_21_JPG.rf.7Ui27GBvzzIpUnSRtWLF.JPG</li><li><span>train</span> — 04ec3e0d-BN022R_13_JPG.rf.G3poj3KtwMdyvd6JTwfA.JPG</li><li><span>train</span> — 06c85fb6-BN022R_140_JPG.rf.EOtT95P6nva1nxNLFPuj.JPG</li><li><span>train</span> — 16028e8c-BN022R_16_JPG.rf.wEsgGQC6zQAptCxyLfdZ.JPG</li><li><span>train</span> — 1c29ab16-BN022R_48_JPG.rf.JH3L59EZOvN9RyD4Pm0X.JPG</li><li><span>train</span> — 28700afc-BN022R_341_JPG.rf.mzTod3vHPjUz50S8BksQ.JPG</li><li><span>train</span> — 2ac743ed-BN022R_12_JPG.rf.vzpXdJDDn5TcstPGZbT3.JPG</li><li><span>train</span> — 2e5492cc-BN022R_27_JPG.rf.PPJcwFG15IDLcbYa2BfL.JPG</li><li><span>train</span> — 3a55b498-BN022R_324_JPG.rf.lAa17z2tGhstifZiQ12N.JPG</li><li><span>train</span> — 514549e0-BN022R_28_JPG.rf.6v5WHOdi90hcEZ7wKhyg.JPG</li><li><span>train</span> — 606146bb-BN022R_46_JPG.rf.5LXEtZittbBHUbFYJHVj.JPG</li><li><span>train</span> — 65cfa4f3-BN022R_6_JPG.rf.8fCha2r9bWyqSBAj53Bf.JPG</li><li><span>train</span> — 6679716a-BN022R_172_JPG.rf.BuGwD6OJjQshJLl1cT1c.JPG</li><li><span>train</span> — 6967b2b0-BN022R_18_JPG.rf.5nusMsF4K3Gn8EtZBjpt.JPG</li><li><span>train</span> — 6a3b618b-BN022R_81_JPG.rf.dDZCXowGYIrDCNRLIkEM.JPG</li><li><span>train</span> — 6c0b7e49-BN022R_9_JPG.rf.6lJIx0YCE7tRMml4ryId.JPG</li><li><span>train</span> — 6f930126-BN022R_39_JPG.rf.JGqMmIRizYE8ZObbHU1X.JPG</li><li><span>train</span> — 73b6b64e-BN022R_14_JPG.rf.hl3D3SqV0isZV2MvlT4l.JPG</li><li><span>train</span> — 7450a281-BN022R_85_JPG.rf.V47DaGEFvM4XD3eGGUIK.JPG</li><li><span>train</span> — 757dec6c-BN022R_143_JPG.rf.ucSKv6u4aw8IxjwzSG4T.JPG</li><li><span>train</span> — 75b3b91a-BN022R_41_JPG.rf.WC7KgWgcesct0iyvWKcv.JPG</li><li><span>train</span> — 79abc3f9-BN022R_36_JPG.rf.0bBikwgafLcCzKThHC2c.JPG</li><li><span>train</span> — 7cf6078a-BN022R_33_JPG.rf.zQXMJ8Zn21cOkzgQdrl8.JPG</li><li><span>train</span> — 9189bb60-BN022R_45_JPG.rf.Epufx1OmUphDeLdbakXD.JPG</li><li><span>train</span> — 96651167-BN022R_7_JPG.rf.465DLOp9Bf4mfGX1Sti5.JPG</li><li><span>train</span> — 993560cf-BN022R_164_JPG.rf.k5Thu67jNBPtkOB8zLKA.JPG</li><li><span>train</span> — 9ac68a1f-BN022R_40_JPG.rf.ES2kUa1lSy9y46rtUl2H.JPG</li><li><span>train</span> — 9bbeff7b-BN022R_130_JPG.rf.yGYgs4u7M4t22xFwpAMD.JPG</li><li><span>train</span> — 9bc23ebe-BN022R_111_JPG.rf.0uOvqGTAnm0mKK6O8zud.JPG</li><li><span>train</span> — a7e7d3da-BN022R_49_JPG.rf.vl1ivGYnYL9wWQE9Y61A.JPG</li><li><span>train</span> — aaeafeba-BN022R_128_JPG.rf.5mVHLKteqpdcIPsUit9q.JPG</li><li><span>train</span> — b63967fe-BN022R_3_JPG.rf.nvLE0CWrQP6JzfsV8i4n.JPG</li><li><span>train</span> — b73f2607-BN022R_8_JPG.rf.8eqsGVv0owG1jWlwzA7J.JPG</li><li><span>train</span> — c0c5d24a-BN022R_138_JPG.rf.IlJsGtkjeKB19GWWkFUS.JPG</li><li><span>train</span> — c49243e0-BN022R_30_JPG.rf.jBvaqVGkTm4ZcSzaBVWx.JPG</li><li><span>train</span> — c4e17003-BN022R_20_JPG.rf.3gziQuWkWYLzg26JtC3C.JPG</li><li><span>train</span> — c7241edf-BN022R_156_JPG.rf.3IZoUqaBserWM47zSsgY.JPG</li><li><span>train</span> — c7844aa6-BN022R_29_JPG.rf.Vrb1O2fyHSONq5e1koPW.JPG</li><li><span>train</span> — cff906b4-BN022R_1_JPG.rf.Olgo9Q0Nq8OvjrZKLkFd.JPG</li><li><span>train</span> — da95db00-BN022R_4_JPG.rf.UPfZ2raEoGktVIobdGTI.JPG</li><li><span>train</span> — dc126ed5-BN022R_119_JPG.rf.NTbONhWgfOhNfsTpJzjp.JPG</li><li><span>train</span> — e2d6e000-BN022R_258_JPG.rf.bno5P7gtJmpjVLXjBxMb.JPG</li><li><span>train</span> — e77c5596-BN022R_22_JPG.rf.3AL2VAu52IA886I6CBfF.JPG</li><li><span>train</span> — e88508b8-BN022R_105_JPG.rf.4LE4cAuOA7KMzLZtQkhv.JPG</li><li><span>train</span> — eb409a7e-BN022R_5_JPG.rf.C7u9XWCKqyTPDAYfZotW.JPG</li><li><span>train</span> — ed7e909e-BN022R_329_JPG.rf.bqk1s7JYfDQNBEEZRrxc.JPG</li><li><span>train</span> — efba9cb4-BN022R_213_JPG.rf.t7xaE7IcAUXdGDFebpxe.JPG</li><li><span>train</span> — f59767ff-BN022R_24_JPG.rf.JCgMB2vlixsc26oEbYqk.JPG</li><li><span>train</span> — ff00fe0b-BN022R_32_JPG.rf.pFb1y4Tj3MsRYcytI9UM.JPG</li><li><span>valid</span> — 10c5613d-BN022R_34_JPG.rf.LcrwzoW3oc4HeNYcjrBA.JPG</li><li><span>valid</span> — 277a8b58-BN022R_23_JPG.rf.Jp3MbsVe6xqqXDJIiK3J.JPG</li><li><span>valid</span> — 3f5da95e-BN022R_44_JPG.rf.I3UcQ5eZhToH0DJrZVVF.JPG</li><li><span>valid</span> — 791706ac-BN022R_17_JPG.rf.kUSvan6slI7cD1zs9e49.JPG</li><li><span>valid</span> — 9300db34-BN022R_26_JPG.rf.hGwpxydVNACGUDYnaDKe.JPG</li><li><span>valid</span> — 9a4cb1a8-BN022R_47_JPG.rf.Nl7ZXUmP6zJtm6JG4rUs.JPG</li><li><span>valid</span> — aba6f43b-BN022R_93_JPG.rf.R1cHbBNEL2zh0wDY2B0F.JPG</li><li><span>valid</span> — b9e8fd52-BN022R_35_JPG.rf.FKMUcZslgZfY7vBfTQuC.JPG</li><li><span>valid</span> — bc70a3f8-BN022R_98_JPG.rf.87cFqfxFOCjE4160O8tG.JPG</li><li><span>valid</span> — cd4dfa9f-BN022R_134_JPG.rf.QAhCTdQpXkMuotfrxeIv.JPG</li><li><span>valid</span> — d2f1705c-BN022R_50_JPG.rf.D1aYhh4EC5naTm3FZ4xO.JPG</li><li><span>valid</span> — d3b2add8-BN022R_116_JPG.rf.yqXPsQ5iVgei6x1d9ULA.JPG</li><li><span>valid</span> — d4cb074f-BN022R_2_JPG.rf.Pvklr1izfA7wMtvB0heg.JPG</li><li><span>valid</span> — f02c47c2-BN022R_10_JPG.rf.Xjm1GKDYySHwD30vDHL5.JPG</li><li><span>valid</span> — f182b915-BN022R_120_JPG.rf.kkmNaYodjCCqwGvymujM.JPG</li></ul></details></td></tr><tr><td>matcg000113</td><td>BN090R</td><td><details><summary>19 imagen(es)</summary><ul><li><span>test</span> — 65ba1d9e-BN090R_20_JPG.rf.a85TWxIr9Gkqrovc7OQV.JPG</li><li><span>train</span> — 3100524f-BN090R_6_JPG.rf.16gcZ0s3J8J9OaPmCC4R.JPG</li><li><span>train</span> — 3d0b2687-BN090R_2_JPG.rf.kOmYKtNlmniOwFDeZ0Sq.JPG</li><li><span>train</span> — 3fc396d8-BN090R_9_JPG.rf.zfLrXv0vlQHnIQLFsxPG.JPG</li><li><span>train</span> — 66363562-BN090R_8_JPG.rf.gf2EeoIaTaZ8iB4JFI32.JPG</li><li><span>train</span> — 6668cd2d-BN090R_18_JPG.rf.Jl5LUOsGmUA5Jh6uvz2i.JPG</li><li><span>train</span> — 66fd168c-BN090R_16_JPG.rf.TTt41khezgOnw55sY26n.JPG</li><li><span>train</span> — 776ffe55-BN090R_13_JPG.rf.0eMZWtTySsZaptI6jizj.JPG</li><li><span>train</span> — 8369a09a-BN090R_3_JPG.rf.oU6mPK7PuHyfzfvlNZwM.JPG</li><li><span>train</span> — ad34046f-BN090R_7_JPG.rf.XdiogXtl3rGxwNE6EjgO.JPG</li><li><span>train</span> — b4c6e556-BN090R_19_JPG.rf.RIRjBzuj4do5ckKZCB5w.JPG</li><li><span>train</span> — b54af106-BN090R_5_JPG.rf.wKrwBqQWO1V7aVEVz7Ks.JPG</li><li><span>train</span> — bd57c065-BN090R_15_JPG.rf.UwhhMOApjbfGIpgmQlI2.JPG</li><li><span>train</span> — ce21c7c6-BN090R_10_JPG.rf.Ac76xoL9ClPbPejPDOeW.JPG</li><li><span>train</span> — e20bc4b2-BN090R_17_JPG.rf.2e4zftAwy4XeWJWkCWux.JPG</li><li><span>train</span> — ef3df8e9-BN090R_14_JPG.rf.DrXMsl98Yv0ui8jlLAZ3.JPG</li><li><span>valid</span> — 2e5dfbf3-BN090R_12_JPG.rf.pbvifpvDEyvbk7yy5naM.JPG</li><li><span>valid</span> — 53347ff9-BN090R_21_JPG.rf.J5uIBkbHtqXs8baBByKi.JPG</li><li><span>valid</span> — de475225-BN090R_4_JPG.rf.qloxE1TOb2XqHvB6DleB.JPG</li></ul></details></td></tr><tr><td>matcg000117</td><td>BN204R</td><td><details><summary>12 imagen(es)</summary><ul><li><span>test</span> — 5976919a-BN204R_73_JPG.rf.IRfHGQgP8DdpsyWaxdCX.JPG</li><li><span>train</span> — 2fa02196-BN204R_25_JPG.rf.RyjXXaqIYORrYTSIGiox.JPG</li><li><span>train</span> — 3e5ada39-BN204R_81_JPG.rf.NGKM3JAXk3eXdoh2Yknc.JPG</li><li><span>train</span> — 5a4d8bc1-BN204R_37_JPG.rf.J2bInQ7cGB2yBB6ywRI1.JPG</li><li><span>train</span> — 74032457-BN204R_49_JPG.rf.YpbdPcW9EvZ5MdBWXR7w.JPG</li><li><span>train</span> — a0f876f1-BN204R_57_JPG.rf.U8EeLuhj8aKB3h6Ue6nU.JPG</li><li><span>train</span> — b389fe5a-BN204R_17_JPG.rf.QA89LeMRjaQcc20wvYUf.JPG</li><li><span>train</span> — babae6a9-BN204R_2_JPG.rf.DbwD1VbZ9gqVwdT1Bnyf.JPG</li><li><span>train</span> — bc146db7-BN204R_10_JPG.rf.S8nEKSCJ8CdPIpXwnrHx.JPG</li><li><span>train</span> — cc00ca39-BN204R_65_JPG.rf.GXWap8JDgCeZ7LiBubBm.JPG</li><li><span>train</span> — dee73db4-BN204R_129_JPG.rf.wI2cLEXy0ytlTbLES5oX.JPG</li><li><span>valid</span> — 3cf342a8-BN204R_97_JPG.rf.8krdboI5slLxhggzUA72.JPG</li></ul></details></td></tr></tbody></table></div>
+  </section>
+
+</main>
+</body>
+</html>
