@@ -41,15 +41,17 @@ def contar_ingenuo(valores):
 
 def contar_diccionario(valores):
     """Recuento con un diccionario: una sola pasada. Devuelve (recuento, pasos). Coste: n."""
-    # TODO: Una sola pasada: recuento[v] = recuento.get(v, 0) + 1, y sumad 1 a pasos en cada vuelta.
-    return {}, 0
+    recuento = {}
+    pasos = 0
+    for v in valores:
+        recuento[v] = recuento.get(v, 0) + 1
+        pasos += 1
+    return recuento, pasos
 
 
 def repetidos(recuento):
     """Valores que aparecen más de una vez (sin contar el vacío)."""
-    # TODO: Recorred recuento.items() y quedaos con los valores (no vacíos) que aparecen más de una vez.
-    # Devolvedlos ordenados con sorted().
-    return []
+    return sorted(v for v, cantidad in recuento.items() if v != "" and cantidad > 1)
 
 
 def pruebas():
