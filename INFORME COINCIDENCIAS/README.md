@@ -1,0 +1,1 @@
+Para que el script funcione, debe insertarse en la carpeta 'scripts' dentro de matia_yolo_fase_1. Además, hay que descargarse el Excel original 'matIA-Data Set' e introducirlo en la raíz de matia_yolo_fase_1.
